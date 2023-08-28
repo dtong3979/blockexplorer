@@ -1,11 +1,10 @@
-import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 
 import './App.css';
+import GridItem from './components/GridItem';
 import Progress from './components/Progress';
 import TransactionTable from './components/TransactionTable';
 
@@ -71,40 +70,31 @@ function App() {
     getBlockWithTransactions(blockNumber);
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.primary,
-    cursor: 'pointer',
-  }));
-
   return (
     <Box sx={{ flexGrow: 1 }} style={{ margin: '1rem' }}>
       <Grid container spacing={4}>
         <Grid xs item>
-          <Item>
+          <GridItem>
             <span
               onClick={(e) => handleGetListOfTransaction(e, prevBlockNumber)}
             >
               Previous Block Number: {prevBlockNumber}
             </span>
-          </Item>
+          </GridItem>
         </Grid>
         <Grid xs={6} item>
-          <Item onClick={(e) => handleGetListOfTransaction(e, blockNumber)}>
+          <GridItem onClick={(e) => handleGetListOfTransaction(e, blockNumber)}>
             Block Number: {blockNumber}
-          </Item>
+          </GridItem>
         </Grid>
         <Grid xs item>
-          <Item>
+          <GridItem>
             <span
               onClick={(e) => handleGetListOfTransaction(e, nextBlockNumber)}
             >
               Next Block Number: {nextBlockNumber}
             </span>
-          </Item>
+          </GridItem>
         </Grid>
       </Grid>
       {loadingListTransactions ? (
